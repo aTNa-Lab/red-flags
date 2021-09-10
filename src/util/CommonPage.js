@@ -68,7 +68,8 @@ export default (props) => {
     }, [])
 
     const viewDetails = (id) => {
-        const url = getDetailsUrl(pageUrl, id)
+        const url = getDetailsUrl(pageUrl === "" ? "flags" : pageUrl, id)
+        console.log(url)
         window.location.href = url;
     }
 

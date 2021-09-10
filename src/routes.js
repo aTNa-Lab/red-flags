@@ -1,11 +1,13 @@
 
 export const Routes = {
     // pages
-    Presentation: { path: "/" },
+    // Presentation: { path: "/" },
+    Flags: { path: "/" },
     DashboardOverview: { path: "/dashboard/overview" },
     Transactions: { path: "/transactions" },
     Irregularities: {path: "/irregularities"},
-    Flags: {path: "/flags"},
+    // Flags: {path: "/flags"},
+    Details: {path: "/details/:page/:id"},
     Entities: {path: "/entities"},
     Tenders: {path: "/tenders"},
     Settings: { path: "/settings" },

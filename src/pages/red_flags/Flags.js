@@ -4,6 +4,6 @@ import CommonPage from "../../util/CommonPage";
 
 export default () => {
     const backendService = new BackendService();
-    const pageUrl = "/flags"
+    const pageUrl = "flags"
     return <CommonPage pageUrl={pageUrl} requestMethod={backendService.getFlags} />
 };

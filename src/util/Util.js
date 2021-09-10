@@ -40,19 +40,23 @@ export const getPaginationUrl = (mode, currentPage, pageUrl, totalCount) => {
     const total = totalCount / 10
     if (page && page > 0 && page <= total + 1) {
         if (mode === 'plus' && page < total) {
-            return `${baseUrl}/?page=${page + 1}#${pageUrl}`
+            return `${baseUrl}/?page=${page + 1}#/${pageUrl}`
         }
         else if (mode === 'minus' && page > 1) {
-            return `${baseUrl}/?page=${page - 1}#${pageUrl}`
+            return `${baseUrl}/?page=${page - 1}#/${pageUrl}`
         }
         else if (mode === 'equal') {
-            return `${baseUrl}/?page=${page}#${pageUrl}`
+            return `${baseUrl}/?page=${page}#/${pageUrl}`
         }
         else {
-            return `${baseUrl}/?page=${page}#${pageUrl}`
+            return `${baseUrl}/?page=${page}#/${pageUrl}`
         }
     }
     else {
-        return `${baseUrl}/#${pageUrl}`
+        return `${baseUrl}/#/${pageUrl}`
     }
+}
+
+export const getDetailsUrl = (page, id) => {
+    return `${baseUrl}/#/details/${page}/${id}`
 }

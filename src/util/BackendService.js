@@ -5,11 +5,15 @@ const API_URL = 'https://fifth-reality-325409.uc.r.appspot.com';
 
 export default class BackendService{
 
-    baseMethod = (page, offset) => {
+    baseMethod = (page, offset, id) => {
         let url = `${API_URL}/api/v1/${page}/`;
         if (offset) {
             url = `${API_URL}/api/v1/${page}/?offset=${offset}`;
         }
+        if (id) {
+            url = `${API_URL}/api/v1/${page}/${id}/`;
+        }
+        console.log(url)
 
         return axios.get(url).then(response => response.data);
     };
@@ -21,4 +25,6 @@ export default class BackendService{
     getTenders = offset => this.baseMethod('tenders', offset);
 
     getEntities = offset => this.baseMethod('entities', offset);
+
+    getDetails = (page, id) => this.baseMethod(page, null, id);
 }

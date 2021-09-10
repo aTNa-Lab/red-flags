@@ -341,7 +341,8 @@ export const CommonTable = (props) => {
         handleNextPage,
         handleFirstPage,
         handleLastPage,
-        handlePageChange
+        handlePageChange,
+        viewDetails
     } = props;
 
     if (!ready) {
@@ -352,7 +353,7 @@ export const CommonTable = (props) => {
         const {row} = props;
 
         return (
-            <tr>
+            <tr onDoubleClick={() => viewDetails(row.id)}>
                 {fields.map((field, i) => (
                     <td key={`row-${field}-${i}`}>
                       <span className="fw-normal">

@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {CommonTable} from "../components/Tables";
-import {getKeys, getPaginationUrl} from "../util/Util";
+import {getDetailsUrl, getKeys, getPaginationUrl} from "../util/Util";
+import BackendService from "./BackendService";
 
 const queryString = require('query-string');
 
 export default (props) => {
     const {requestMethod, pageUrl} = props;
+    const backendService = new BackendService();
 
     const [data, setData] = useState([]);
     const [fields, setFields] = useState([])
@@ -43,6 +45,11 @@ export default (props) => {
         }
         getData()
     }, [])
+
+    const viewDetails = (id) => {
+        const url = getDetailsUrl(pageUrl, id)
+        window.location.href = url;
+    }
 
     const handleNextPage = async () => {
         const url = getPaginationUrl('plus', currentPage, pageUrl, totalCount)
@@ -88,6 +95,7 @@ export default (props) => {
                 handleFirstPage={handleFirstPage}
                 handleLastPage={handleLastPage}
                 handlePageChange={handlePageChange}
+                viewDetails={viewDetails}
             />
         </>
     );

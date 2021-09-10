@@ -52,6 +52,7 @@ import Irregularities from "./red_flags/Irregularities";
 import Flags from "./red_flags/Flags";
 import Tenders from "./red_flags/Tenders";
 import Entities from "./red_flags/Entities";
+import Details from "./red_flags/Details";
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
     const [loaded, setLoaded] = useState(false);
@@ -104,7 +105,7 @@ const RouteWithSidebar = ({component: Component, ...rest}) => {
 
 export default () => (
     <Switch>
-        <RouteWithLoader exact path={Routes.Presentation.path} component={Presentation}/>
+        {/*<RouteWithLoader exact path={Routes.Presentation.path} component={Presentation}/>*/}
         <RouteWithLoader exact path={Routes.Signin.path} component={Signin}/>
         <RouteWithLoader exact path={Routes.Signup.path} component={Signup}/>
         <RouteWithLoader exact path={Routes.ForgotPassword.path} component={ForgotPassword}/>
@@ -121,6 +122,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.Flags.path} component={Flags}/>
         <RouteWithSidebar exact path={Routes.Entities.path} component={Entities}/>
         <RouteWithSidebar exact path={Routes.Tenders.path} component={Tenders}/>
+        <RouteWithSidebar exact path={Routes.Details.path} component={Details}/>
         <RouteWithSidebar exact path={Routes.Settings.path} component={Settings}/>
         <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables}/>
 

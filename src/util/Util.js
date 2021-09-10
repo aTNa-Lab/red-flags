@@ -14,8 +14,7 @@ export const getPagination = (currentPage, totalCount) => {
             pagination.push(i)
         }
         return pagination
-    }
-    else if (page < 4) {
+    } else if (page < 4) {
         const pagination = []
         for (let i = page - 3; i < page + 3; i++) {
             if (i > 0 && i <= total + 1) {
@@ -23,8 +22,7 @@ export const getPagination = (currentPage, totalCount) => {
             }
         }
         return pagination
-    }
-    else if (page > total - 3) {
+    } else if (page > total - 3) {
         const pagination = []
         for (let i = page - 3; i < page + 3; i++) {
             if (i <= total + 1) {
@@ -35,28 +33,44 @@ export const getPagination = (currentPage, totalCount) => {
     }
 }
 
-export const getPaginationUrl = (mode, currentPage, pageUrl, totalCount) => {
+export const getPaginationUrl = (mode, currentPage, pageUrl, totalCount, filter) => {
     const page = parseInt(currentPage)
     const total = totalCount / 10
-    if (page && page > 0 && page <= total + 1) {
-        if (mode === 'plus' && page < total) {
-            return `${baseUrl}/?page=${page + 1}#/${pageUrl}`
+    let irregularity="", tender="", entity="";
+    if (filter) {
+        if (filter.irregularity) {
+            irregularity = filter.irregularity
         }
-        else if (mode === 'minus' && page > 1) {
-            return `${baseUrl}/?page=${page - 1}#/${pageUrl}`
+        if (filter.tender) {
+            tender = filter.tender
         }
-        else if (mode === 'equal') {
-            return `${baseUrl}/?page=${page}#/${pageUrl}`
-        }
-        else {
-            return `${baseUrl}/?page=${page}#/${pageUrl}`
+        if (filter.entity) {
+            entity = filter.entity
         }
     }
-    else {
-        return `${baseUrl}/#/${pageUrl}`
+    let parsedPage = page
+
+    if (page && page > 0 && page <= total + 1) {
+        if (mode === 'plus' && page < total) {
+            parsedPage = page + 1
+        } else if (mode === 'minus' && page > 1) {
+            parsedPage = page - 1
+        }
+        return `${baseUrl}/?page=${parsedPage}&irregularity=${irregularity}&tender=${tender}&tender__procuring_entity=${entity}#/${pageUrl}`
+    } else {
+        if (filter) {
+            return `${baseUrl}/?irregularity=${irregularity}&tender=${tender}&tender__procuring_entity=${entity}#/${pageUrl}`
+        }
+        else {
+            return `${baseUrl}/#/${pageUrl}`
+        }
     }
 }
 
 export const getDetailsUrl = (page, id) => {
     return `${baseUrl}/#/details/${page}/${id}`
+}
+
+export const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1)
 }

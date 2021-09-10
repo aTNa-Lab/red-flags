@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faEnvelope, faUnlockAlt} from "@fortawesome/free-solid-svg-icons";
-import {Col, Row, Form, Card, Button, Container, InputGroup} from '@themesberg/react-bootstrap';
-import {Link, useParams} from 'react-router-dom';
-
-import {Routes} from "../../routes";
+import {Col, Container, Form, InputGroup, Row} from '@themesberg/react-bootstrap';
+import {useParams} from 'react-router-dom';
 import BackendService from "../../util/BackendService";
+import {capitalize} from "../../util/Util";
 
 
 export default () => {
@@ -21,10 +18,6 @@ export default () => {
     useEffect(() => {
         backendService.getDetails(page, id).then(d => setData(d))
     }, [id])
-
-    const capitalize = (str) => {
-        return str.charAt(0).toUpperCase() + str.slice(1)
-    }
 
     const createForm = () => {
 
@@ -44,8 +37,7 @@ export default () => {
                 <>
                     <h4 className="mb-4">{capitalize(field)}</h4>
                     {
-                        Object.keys(rest[field]).map(subfield => rest[field][subfield] && (
-
+                        Object.keys(rest[field]).map(subfield => (
                             <Form.Group id="id" className="mb-4">
                                 <Form.Label>{capitalize(subfield)}</Form.Label>
                                 <InputGroup>
@@ -56,7 +48,6 @@ export default () => {
                                     }
                                 </InputGroup>
                             </Form.Group>
-
                         ))
                     }
                 </>

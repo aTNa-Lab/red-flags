@@ -400,7 +400,7 @@ export const CommonTable = (props) => {
                         </Pagination>
                     </Nav>
                     <small className="fw-bold">
-                        Showing <b>{currentPage * 10}</b> out of <b>{totalCount}</b> entries
+                        Showing <b>{currentPage * data.length}</b> out of <b>{totalCount}</b> entries
                     </small>
                 </Card.Footer>
             </Card.Body>
